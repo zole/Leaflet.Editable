@@ -1628,8 +1628,10 @@
             // simulated events (actually simulated by L.Map.Tap), which are no more taken
             // into account by L.Draggable.
             // Ref.: https://github.com/Leaflet/Leaflet.Editable/issues/103
-            e.originalEvent._simulated = false;
-            this.map.dragging._draggable._onUp(e.originalEvent);
+            if (this.map.dragging._draggable) {
+                e.originalEvent._simulated = false
+                this.map.dragging._draggable._onUp(e.originalEvent)
+            }
             // Now transfer ongoing drag action to the bottom right corner.
             // Should we refine which corner will handle the drag according to
             // drag direction?
